@@ -973,3 +973,182 @@ a:hover {
     margin-top: 2rem;
   }
 }
+
+/* Tutorial Steps
+-------------------------------------------------------------- */
+.installation-steps {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.step-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.step-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.step-item:hover::before {
+    opacity: 1;
+}
+
+.step-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.step-image {
+    flex: 0 0 350px;
+    position: relative;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(77, 85, 204, 0.05) 0%, rgba(112, 120, 218, 0.05) 100%);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.step-image::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.1;
+    transition: all 0.3s ease;
+}
+
+.step-item:hover .step-image::before {
+    opacity: 0.2;
+    transform: scale(1.02);
+}
+
+.step-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.step-item:hover .step-image img {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.step-content {
+    flex: 1;
+    padding: 1rem;
+}
+
+.step-content h4 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.step-content h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+    transition: width 0.3s ease;
+}
+
+.step-item:hover .step-content h4::after {
+    width: 100%;
+}
+
+.step-content p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+}
+
+.step-content a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.step-content a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.step-content a:hover {
+    color: var(--primary-dark);
+}
+
+.step-content a:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 767.98px) {
+    .step-item {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .step-image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .step-content h4 {
+        font-size: 1.25rem;
+    }
+
+    .step-content h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .step-content p {
+        font-size: 1rem;
+    }
+}

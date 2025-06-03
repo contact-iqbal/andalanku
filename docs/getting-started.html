@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Guide - Andalanku</title>
+    <title>Getting Started - Andalanku</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="../style/page-sheet.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         /* Navbar Styling */
@@ -199,6 +200,7 @@
             color: var(--primary);
         }
 
+        /* Mobile menu toggle button */
         .menu-toggle {
             display: none;
             position: fixed;
@@ -224,6 +226,7 @@
             }
         }
 
+        /* Breadcrumb Styling */
         .breadcrumb {
             display: flex;
             align-items: center;
@@ -276,59 +279,6 @@
                 margin: 0 8px;
             }
         }
-
-        /* Additional styles for security guide */
-        .screenshot {
-            border-radius: 8px;
-            border: 1px solid #eee;
-            margin: 20px 0;
-            max-width: 100%;
-        }
-
-        .tip-box {
-            background: #f8f9fa;
-            border-left: 4px solid var(--primary);
-            padding: 16px;
-            margin: 16px 0;
-            border-radius: 4px;
-        }
-
-        .step-list {
-            list-style: none;
-            padding: 0;
-            counter-reset: step-counter;
-        }
-
-        .step-list li {
-            counter-increment: step-counter;
-            margin-bottom: 16px;
-            padding-left: 36px;
-            position: relative;
-        }
-
-        .step-list li::before {
-            content: counter(step-counter);
-            background: var(--primary);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .alert-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 16px;
-            margin: 16px 0;
-            border-radius: 4px;
-        }
     </style>
 </head>
 <body>
@@ -338,7 +288,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
                     <div class="logo-icon">
-                        <i class="bi bi-database-fill"></i>
+                        <img src="../assets/icon/logo.png" alt="andalanKU Logo" width="40" height="40">
                     </div>
                     <span>andalan<span class="fw-bold">KU</span></span>
                 </a>
@@ -348,7 +298,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Beranda</a>
+                            <a class="nav-link" href="index.html">Homepage</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -356,8 +306,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="getting-started.html">Getting Started</a></li>
-                                <li><a class="dropdown-item" href="user-guide.html">User Guide</a></li>
-                                <li><a class="dropdown-item" href="security.html">Security</a></li>
+                                <li><a class="dropdown-item" href="documentation.html">Dokumentasi Lengkap</a></li>
                                 <li><a class="dropdown-item" href="support.html">Support</a></li>
                             </ul>
                         </li>
@@ -371,37 +320,19 @@
         <div class="row">
             <div class="col-auto p-0">
                 <div class="sidebar">
-                    <input type="text" class="search-box" placeholder="Cari panduan keamanan...">
+
                     <div class="categories">
-                        <a href="#authentication" class="category-item active">
+                        <a href="#introduction" class="category-item active">
                             <div class="icon">
-                                <i class="bi bi-shield-lock"></i>
+                                <i class="bi bi-book"></i>
                             </div>
-                            Autentikasi
+                            Introduction
                         </a>
-                        <a href="#access-control" class="category-item">
+                        <a href="#installation" class="category-item">
                             <div class="icon">
-                                <i class="bi bi-person-lock"></i>
+                                <i class="bi bi-download"></i>
                             </div>
-                            Kontrol Akses
-                        </a>
-                        <a href="#data-security" class="category-item">
-                            <div class="icon">
-                                <i class="bi bi-database-lock"></i>
-                            </div>
-                            Keamanan Data
-                        </a>
-                        <a href="#network-security" class="category-item">
-                            <div class="icon">
-                                <i class="bi bi-hdd-network"></i>
-                            </div>
-                            Keamanan Jaringan
-                        </a>
-                        <a href="#compliance" class="category-item">
-                            <div class="icon">
-                                <i class="bi bi-check-circle"></i>
-                            </div>
-                            Kepatuhan
+                            Installation
                         </a>
                     </div>
                 </div>
@@ -419,91 +350,65 @@
                             <li class="breadcrumb-item">
                                 <a href="documentation.html">Documentation</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Security Guide</li>
+                            <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
                         </ol>
                     </nav>
                     
-                    <h1>Panduan Keamanan andalanKU</h1>
-                    <p class="subtitle">Pelajari praktik terbaik keamanan untuk melindungi data dan sistem andalanKU Anda</p>
+                    <h1>Getting Started with andalanKU</h1>
+                    <p class="subtitle">Learn how to install and configure andalanKU for your business needs</p>
 
-                    <section id="authentication" class="card">
-                        <h2>Autentikasi</h2>
-                        <p>Sistem autentikasi andalanKU dirancang untuk memberikan keamanan maksimal dengan tetap mempertahankan kemudahan penggunaan.</p>
-                        
-                        <div class="tip-box">
-                            <strong>Penting:</strong> Selalu aktifkan autentikasi dua faktor (2FA) untuk meningkatkan keamanan akun Anda.
-                        </div>
-
-                        <h3>Praktik Terbaik Kata Sandi:</h3>
-                        <ul class="step-list">
-                            <li>Gunakan minimal 12 karakter dengan kombinasi huruf, angka, dan simbol</li>
-                            <li>Hindari penggunaan informasi pribadi dalam kata sandi</li>
-                            <li>Ganti kata sandi secara berkala (setiap 3 bulan)</li>
-                            <li>Jangan menggunakan kata sandi yang sama untuk sistem lain</li>
-                        </ul>
+                    <section id="introduction" class="card">
+                        <h2>Introduction</h2>
+                        <p>andalanKU is a powerful database management system designed to help businesses manage their operations efficiently. This guide will help you get started with the basic setup and configuration.</p>
                     </section>
 
-                    <section id="access-control" class="card">
-                        <h2>Kontrol Akses</h2>
-                        <p>Kelola hak akses pengguna dengan prinsip privilege minimum untuk memastikan keamanan data.</p>
-                        
-                        <h3>Pengaturan Hak Akses:</h3>
-                        <ol class="step-list">
-                            <li>Tentukan peran dan tanggung jawab pengguna</li>
-                            <li>Terapkan pembatasan akses berdasarkan peran</li>
-                            <li>Lakukan audit akses secara berkala</li>
-                            <li>Hapus akses segera saat karyawan mengundurkan diri</li>
-                        </ol>
+                    <section id="installation" class="card">
+                        <h2>Installation</h2>
+                        <p>Follow these steps to install andalanKU on your system:</p>
+                        <div class="installation-steps">
+                            <div class="step-item">
+                                <div class="step-content">
+                                    <h4>1. Download andalanKU</h4>
+                                    <p>Download the latest version from the <a href="index.html#download">main page</a></p>
+                                </div>
+                            </div>
 
-                        <div class="alert-box">
-                            <strong>Peringatan:</strong> Jangan pernah membagikan kredensial akun Anda dengan orang lain.
-                        </div>
-                    </section>
+                            <div class="step-item">
+                                <div class="step-content">
+                                    <h4>2. Extract andalanKU folder</h4>
+                                    <p>Extract and open the andalanKU folder</p>
+                                </div>
+                            </div>
 
-                    <section id="data-security" class="card">
-                        <h2>Keamanan Data</h2>
-                        <p>Lindungi data sensitif dengan enkripsi dan praktik keamanan terbaik.</p>
-                        
-                        <div class="tip-box">
-                            <strong>Tips:</strong> Lakukan backup data secara teratur dan simpan di lokasi yang aman.
-                        </div>
+                            <div class="step-item">
+                                <div class="step-image">
+                                    <img src="../assets/wizard-install.png" alt="Installation Wizard" class="img-fluid rounded shadow-sm">
+                                </div>
+                                <div class="step-content">
+                                    <h4>3. Follow Installation Guide</h4>
+                                    <p>Open the setup application and follow the next steps</p>
+                                </div>
+                            </div>
 
-                        <h3>Langkah Pengamanan Data:</h3>
-                        <ul class="step-list">
-                            <li>Enkripsi data sensitif saat penyimpanan dan transmisi</li>
-                            <li>Terapkan kebijakan retensi data</li>
-                            <li>Gunakan metode penghapusan data yang aman</li>
-                            <li>Monitor dan log akses data sensitif</li>
-                        </ul>
-                    </section>
+                            <div class="step-item">
+                                <div class="step-image">
+                                    <img src="../assets/setup.png" alt="Start Application" class="img-fluid rounded shadow-sm">
+                                </div>
+                                <div class="step-content">
+                                    <h4>4. Launch Application</h4>
+                                    <p>Launch andalanKU application from desktop or start menu</p>
+                                </div>
+                            </div>
 
-                    <section id="network-security" class="card">
-                        <h2>Keamanan Jaringan</h2>
-                        <p>Amankan infrastruktur jaringan untuk melindungi sistem dari ancaman eksternal.</p>
-
-                        <h3>Praktik Keamanan Jaringan:</h3>
-                        <ul class="step-list">
-                            <li>Gunakan firewall dan sistem deteksi intrusi</li>
-                            <li>Terapkan segmentasi jaringan</li>
-                            <li>Aktifkan enkripsi SSL/TLS</li>
-                            <li>Lakukan pemindaian kerentanan secara rutin</li>
-                        </ul>
-                    </section>
-
-                    <section id="compliance" class="card">
-                        <h2>Kepatuhan</h2>
-                        <p>Pastikan sistem Anda mematuhi standar dan regulasi keamanan yang berlaku.</p>
-
-                        <h3>Standar Kepatuhan:</h3>
-                        <ul class="step-list">
-                            <li>ISO 27001 untuk manajemen keamanan informasi</li>
-                            <li>PCI DSS untuk pemrosesan pembayaran</li>
-                            <li>GDPR untuk perlindungan data pribadi</li>
-                            <li>Regulasi lokal yang berlaku</li>
-                        </ul>
-
-                        <div class="tip-box">
-                            <strong>Penting:</strong> Lakukan audit kepatuhan secara berkala dan dokumentasikan semua temuan.
+                            <div class="step-item">
+                                <div class="step-image">
+                                    <img src="../assets/login.png" alt="Start Application" class="img-fluid rounded shadow-sm">
+                                </div>
+                                <div class="step-content">
+                                    <h4>5. Sign in or Register to andalanKU</h4>
+                                    <p>Sign in or register to andalanKU using your account</p>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>

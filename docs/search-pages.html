@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Andalanku</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="../style/page-sheet.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4D55CC;
+            --primary-light: #7078DA;
+            --primary-dark: #3A40A0;
+            --secondary: #6C757D;
+            --success: #28A745;
+            --info: #17A2B8;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --light: #F8F9FA;
+            --dark: #000000;
+            --white: #ffffff;
+            --body-bg: #FFFFFF;
+            --text-color: #232222;
+            --text-muted: #6C757D;
+            --border-color: #DEE2E6;
+            --border-radius: 0.5rem;
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        .search-container {
+            background-color: var(--primary);
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .search-results {
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .result-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .result-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .result-title i {
+            font-size: 1.2rem;
+        }
+
+        .result-description {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .result-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .result-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .highlight {
+            background-color: rgba(77, 85, 204, 0.1);
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .navbar {
+            background-color: var(--white);
+            transition: all 0.3s ease;
+            z-index: 1030;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                margin-top: 60px;
+                padding: 2rem 1rem;
+            }
+
+            .result-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <div class="logo-icon">
+                        <img src="../assets/icon/logo.png" alt="andalanKU Logo" width="40" height="40">
+                    </div>
+                    <span>andalan<span class="fw-bold">KU</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Homepage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="support.html">Support</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-container text-center mb-5">
+            <h1 class="mb-3" style="color: white">Search documentation</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search for answers...">
+                        <button class="btn btn-light" type="button" onclick="performSearch()">
+                            <i class="bi bi-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Search Results Section -->
+            <div class="col-12">
+                <div id="searchResults" class="search-results">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample documentation data
+        const documentationData = [
+            {
+                id: 1,
+                title: "Getting Started with Andalanku",
+                description: "Learn how to set up, install and start using Andalanku platform for your business needs.",
+                type: "getting-started",
+                url: "getting-started.html",
+                icon: "bi-rocket",
+                lastUpdated: "2025-02-06"
+            },
+            {
+                id: 2,
+                title: "User Guide: Dashboard Overview",
+                description: "Comprehensive guide to understanding and using the Andalanku dashboard features.",
+                type: "user-guide",
+                url: "user-guide.html",
+                icon: "bi-speedometer2",
+                lastUpdated: "2025-02-06"
+            },
+            {
+                id: 3,
+                title: "Data Management System",
+                description: "Learn how to effectively manage and organize your business data with Andalanku's data management features.",
+                type: "data-management",
+                url: "data-management.html",
+                icon: "bi-database",
+                lastUpdated: "2025-02-06"
+            },
+            {
+                id: 4,
+                title: "Employee Database Guide",
+                description: "Complete guide to managing employee information, attendance, and performance tracking.",
+                type: "employee-database",
+                url: "employee-database.html",
+                icon: "bi-people",
+                lastUpdated: "2025-02-06"
+            },
+            {
+                id: 5,
+                title: "Community Forum Guide",
+                description: "Learn how to engage with the Andalanku community through our forum platform.",
+                type: "community-forum",
+                url: "community-forum.html",
+                icon: "bi-chat-dots",
+                lastUpdated: "2025-02-06"
+            },
+            {
+                id: 6,
+                title: "Security Best Practices",
+                description: "Essential security guidelines and best practices for using Andalanku.",
+                type: "security",
+                url: "security.html",
+                icon: "bi-shield-check",
+                lastUpdated: "2025-02-06"
+            }
+        ];
+
+        // Function to highlight search terms
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        // Function to perform search
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+            
+            // Filter and search documentation
+            const filteredResults = documentationData.filter(doc => {
+                return doc.title.toLowerCase().includes(searchTerm) ||
+                       doc.description.toLowerCase().includes(searchTerm);
+            });
+
+            // Display results
+            if (filteredResults.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="bi bi-search"></i>
+                        <h3>No results found</h3>
+                        <p>Try adjusting your search to find what you're looking for.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            resultsContainer.innerHTML = filteredResults.map(doc => `
+                <div class="result-card">
+                    <div class="result-title">
+                        <i class="bi ${doc.icon}"></i>
+                        <a href="${doc.url}" class="text-decoration-none">${highlightText(doc.title, searchTerm)}</a>
+                    </div>
+                    <div class="result-description">
+                        ${highlightText(doc.description, searchTerm)}
+                    </div>
+                    <div class="result-meta">
+                        <span><i class="bi bi-tag"></i> ${doc.type}</span>
+                        <span><i class="bi bi-clock"></i> Updated ${doc.lastUpdated}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll effect to navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Add enter key listener for search
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Perform initial search
+            performSearch();
+        });
+    </script>
+</body>
+
+</html> 

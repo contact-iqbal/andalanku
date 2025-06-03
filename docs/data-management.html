@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Management - Andalanku</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="../style/page-sheet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Navbar Styling */
+        .navbar {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .navbar-brand {
+            font-size: 1.25rem;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .navbar-brand .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+        }
+
+        .nav-link {
+            color: #666;
+            font-size: 0.95rem;
+            padding: 8px 16px !important;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .dropdown-item {
+            padding: 8px 16px;
+            color: #666;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #f5f0ff;
+            color: var(--primary);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 260px;
+            background-color: #fafafa;
+            padding: 24px;
+            height: calc(100vh - 73px);
+            margin-top: 0;
+            transition: all 0.3s ease;
+            position: sticky;
+            top: 73px;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            margin: 2px 0;
+            border-radius: 4px;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .category-item:hover {
+            background-color: #f0f0f0;
+            color: var(--primary);
+        }
+
+        .category-item.active {
+            background-color: #f5f0ff;
+            color: var(--primary);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .main-content {
+            padding: 40px;
+            padding-top: 40px;
+            max-width: 1000px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 6px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #eee;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .step-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .step-list li i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .step-list li p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .tip-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+
+        .screenshot {
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin: 20px 0;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <div class="logo-icon">
+                        <img src="../assets/icon/logo.png" alt="andalanKU Logo" width="40" height="40">
+                    </div>
+                    <span>andalan<span class="fw-bold">KU</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Homepage</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                                Documentation
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="getting-started.html">Getting Started</a></li>
+                                <li><a class="dropdown-item" href="user-guide.html">User Guide</a></li>
+                                <li><a class="dropdown-item" href="security.html">Security</a></li>
+                                <li><a class="dropdown-item" href="support.html">Support</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto p-0">
+                <div class="sidebar">
+                    <div class="categories">
+                        <a href="#overview" class="category-item active">
+                            <div class="icon">
+                                <i class="bi bi-info-circle"></i>
+                            </div>
+                            Overview
+                        </a>
+                        <a href="#features" class="category-item">
+                            <div class="icon">
+                                <i class="bi bi-grid"></i>
+                            </div>
+                            Key Features
+                        </a>
+                        <a href="#getting-started" class="category-item">
+                            <div class="icon">
+                                <i class="bi bi-play-circle"></i>
+                            </div>
+                            Getting Started
+                        </a>
+                        <a href="#best-practices" class="category-item">
+                            <div class="icon">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            Best Practices
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="main-content">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="bi bi-house-door"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="documentation.html">Documentation</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Management</li>
+                        </ol>
+                    </nav>
+                    
+                    <h1>Data Management</h1>
+                    <p class="subtitle">Learn how to effectively manage and organize your data using Andalanku's intuitive interface</p>
+
+                    <section id="overview" class="card">
+                        <h2>Overview</h2>
+                        <p>Andalanku's Data Management system provides a comprehensive solution for organizing, storing, and managing your business data efficiently. With an intuitive interface and powerful features, you can easily handle large volumes of data while maintaining data integrity and security.</p>
+                        
+                        <div class="tip-box">
+                            <strong>Tip:</strong> Use the search and filter functions to quickly find specific data entries in your database.
+                        </div>
+                    </section>
+
+                    <section id="features" class="card">
+                        <h2>Key Features</h2>
+                        <p>Our data management system comes with powerful features designed to streamline your data handling processes.</p>
+
+                        <h3>Core Features:</h3>
+                        <ul class="step-list">
+                            <li>
+                                <i class="bi bi-search"></i>
+                                <p>Advanced search and filtering capabilities</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-sort-down"></i>
+                                <p>Customizable data sorting and organization</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-file-earmark-arrow-up"></i>
+                                <p>Bulk data import and export functionality</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-shield-check"></i>
+                                <p>Data validation and integrity checks</p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="getting-started" class="card">
+                        <h2>Getting Started</h2>
+                        <p>Follow these steps to begin managing your data effectively with Andalanku.</p>
+
+                        <h3>Basic Steps:</h3>
+                        <ul class="step-list">
+                            <li>
+                                <i class="bi bi-database"></i>
+                                <p>Set up your database structure and fields</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-file-earmark-plus"></i>
+                                <p>Import your existing data or create new entries</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-gear"></i>
+                                <p>Configure access permissions and user roles</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-graph-up"></i>
+                                <p>Set up data analytics and reporting</p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="best-practices" class="card">
+                        <h2>Best Practices</h2>
+                        <p>Follow these best practices to ensure optimal data management.</p>
+
+                        <h3>Recommended Practices:</h3>
+                        <ul class="step-list">
+                            <li>
+                                <i class="bi bi-calendar-check"></i>
+                                <p>Regular data backup and maintenance</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-funnel"></i>
+                                <p>Implement data categorization and tagging</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-clock-history"></i>
+                                <p>Schedule automated data cleanup tasks</p>
+                            </li>
+                            <li>
+                                <i class="bi bi-shield-lock"></i>
+                                <p>Maintain data security and access control</p>
+                            </li>
+                        </ul>
+
+                        <div class="tip-box">
+                            <strong>Important:</strong> Always validate data before importing and maintain regular backups of your database.
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
